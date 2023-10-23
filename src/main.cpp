@@ -6,12 +6,12 @@ NimBLECharacteristic *pCharacteristic;
 bool deviceConnected = false;
 
 const int ledPin = 2;
-const int buttonPin = 3;
+const int rightBuzzerPin = 3;
 const int leftBuzzerPin = 4;
-const int rightBuzzerPin = 5;
-int buttonState = 0;
-int lastButtonState = 0;
 int ledState = LOW;
+
+#define SERVICE_UUID "4fafc201-1fb5-459e-8fcc-c5c9c331914b"
+#define DIRECTION_UUID "dfc521a5-ce89-43bd-82a0-28a37f3a2b5a"
 
 class ServerCallbacks: public NimBLEServerCallbacks {
     void onConnect(NimBLEServer* pServer) {
@@ -29,31 +29,18 @@ class ServerCallbacks: public NimBLEServerCallbacks {
 class MyCallbacks : public NimBLECharacteristicCallbacks {
     void onWrite(NimBLECharacteristic *pCharacteristic) {
         std::string value = pCharacteristic->getValue();
-        if (value.length() > 0) {
-            char received = value[0];
-            switch (received) {
-                case 'A':
-                    digitalWrite(leftBuzzerPin, HIGH);
-                    break;
-                case 'a':
-                    digitalWrite(leftBuzzerPin, LOW);
-                    break;
-                case 'B':
-                    digitalWrite(rightBuzzerPin, HIGH);
-                    break;
-                case 'b':
-                    digitalWrite(rightBuzzerPin, LOW);
-                    break;
-                default:
-                    break;
-            }
+        if (value == "r:0") {
+            digitalWrite(leftBuzzerPin, HIGH);
+            digitalWrite(rightBuzzerPin, HIGH);
+            delay(10000); // wait for 10 seconds
+            digitalWrite(leftBuzzerPin, LOW);
+            digitalWrite(rightBuzzerPin, LOW);
         }
     }
 };
 
 void setup() {
     pinMode(ledPin, OUTPUT);
-    pinMode(buttonPin, INPUT_PULLUP);
     pinMode(leftBuzzerPin, OUTPUT);
     pinMode(rightBuzzerPin, OUTPUT);
 
@@ -61,9 +48,9 @@ void setup() {
     pServer = NimBLEDevice::createServer();
     pServer->setCallbacks(new ServerCallbacks());  // Set the callbacks for server
 
-    NimBLEService *pService = pServer->createService("FF01");
+    NimBLEService *pService = pServer->createService(SERVICE_UUID);
     pCharacteristic = pService->createCharacteristic(
-                        "FF02",
+                        DIRECTION_UUID,
                         NIMBLE_PROPERTY::READ   |
                         NIMBLE_PROPERTY::WRITE  |
                         NIMBLE_PROPERTY::NOTIFY
@@ -75,13 +62,6 @@ void setup() {
 }
 
 void loop() {
-    buttonState = digitalRead(buttonPin);
-    if (buttonState == LOW && lastButtonState == HIGH) {
-        ledState = !ledState;
-        digitalWrite(ledPin, ledState);
-    }
-    lastButtonState = buttonState;
-    
     // Blink the LED when not connected
     if (!deviceConnected) {
         digitalWrite(ledPin, !digitalRead(ledPin));
