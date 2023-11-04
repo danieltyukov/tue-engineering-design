@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/darkbg"
+    tools:context=".MainActivity"
+    >
+
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/upper"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:background="@color/lightbg"-->
+<!--        android:orientation="horizontal">-->
+
+<!--        <TextView-->
+<!--            android:layout_width="120dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:text="Pulse"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:gravity="center"-->
+<!--            android:textSize="20sp" />-->
+<!--    </LinearLayout>-->
+
+    <TextView
+        android:id="@+id/debugText"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:text=":"
+        android:textColor="@color/lightbg"
+        android:gravity="center"
+        android:textSize="16sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginTop="200dp">
+
+
+        <Button
+            android:id="@+id/buttonTestLeft"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="45dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginLeft="-22dp"
+            android:background="@drawable/button"
+            android:text="LEFT"
+            android:textColor="@color/white"
+            android:rotation="90"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="250dp"
+            android:gravity="center"
+            android:layout_weight="9">
+
+        <!--
+            <TextView
+                android:id="@+id/navTitle"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Lets' go!"
+                android:layout_marginTop="-50dp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:textSize="25sp" />
+            <TextView
+                android:id="@+id/navDistance"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_marginTop="-15dp"
+                android:layout_marginLeft="-275dp"
+                android:text="0m"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/navEta"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="-275dp"
+                android:text="Arrival: 23 min (12:24)"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/navDestination"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginLeft="-275dp"
+                android:text="Distance: 6.4 km"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:textSize="16sp" />
+            -->
+
+            <TextView
+                android:id="@+id/welcomeText"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="5dp"
+                android:text="Welcome to Pulse Navigation! \n Set a destination in Google Maps or tap the button at the bottom to discover effortless navigation. \n \n"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/buttonTestRight"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginRight="-22dp"
+            android:background="@drawable/button"
+            android:text="RIGHT"
+            android:textColor="@color/white"
+            android:rotation="-90"
+            android:textSize="12sp" />
+
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9"
+        android:gravity="bottom"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_gravity="left"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+
+            <ImageView
+                android:id="@+id/imageViewBT"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/status_dot" />
+            <TextView
+                android:id="@+id/textViewBT"
+                android:layout_width="90dp"
+                android:layout_height="match_parent"
+                android:text="Bluetooth"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/imageViewBleStatus"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                app:srcCompat="@drawable/status_dot" />
+            <TextView
+                android:id="@+id/textViewBleStatus"
+                android:layout_width="105dp"
+                android:layout_height="match_parent"
+                android:text="BLE Service"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_gravity="left"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/imageViewNotification"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/status_dot" />
+            <TextView
+                android:id="@+id/textViewNotification"
+                android:layout_width="105dp"
+                android:layout_height="match_parent"
+                android:text="Notification"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/imageViewDevice"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                app:srcCompat="@drawable/status_dot" />
+            <TextView
+                android:id="@+id/textViewDevice"
+                android:layout_width="65dp"
+                android:layout_height="match_parent"
+                android:text="Device"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/textViewDeviceName"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="no device connected"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_marginBottom="5dp"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lower"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/lightbg"
+        android:gravity="right|center_vertical"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/buttonNotification"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/button"
+            android:text="Notification settings"
+            android:textColor="@color/white"
+            android:textSize="10sp" />
+
+        <Button
+            android:id="@+id/buttonScanNew"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_weight="0.8"
+            android:background="@drawable/button"
+            android:text="scan"
+            android:textColor="@color/white"
+            android:textSize="10sp" />
+
+        <Button
+            android:id="@+id/buttonConnectOld"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/button"
+            android:text="Connect to Previous"
+            android:textColor="@color/white"
+            android:textSize="10sp" />
+
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
